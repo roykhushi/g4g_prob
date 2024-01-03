@@ -27,23 +27,16 @@ import java.io.*;
 // } Driver Code Ends
 
 
-
-
 // User function Template for Java
 
 class Solution {
     boolean arraySortedOrNot(int[] arr, int n) {
         // code here
-       // boolean flag=false;
-       
-    for(int i=1;i<n;i++){
-        if(!(arr[i-1]<=arr[i]))
-        {
-            return false;
-        }
-    }
-      return true; 
-       
-   
+       for(int i =1;i<n;i++){
+           if(!(arr[i-1]<=arr[i])){
+               return false;
+           }
+       }
+       return true;
     }
 }
