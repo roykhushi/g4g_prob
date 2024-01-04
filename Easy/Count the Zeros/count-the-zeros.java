@@ -29,19 +29,18 @@ public class Main {
 // } Driver Code Ends
 
 
-
-
 //User function Template for Java
 
 class Solution {
     int countZeroes(int[] arr, int n) {
         // code here
-        int counter=0;
+        int count =0;
         for(int i=0;i<n;i++){
-            if(arr[i]==0)
-            counter+=1;
+            if(arr[i]==0){
+                count+=1;
+            }
         }
-        return counter;
+        return count;
     }
 
 }
