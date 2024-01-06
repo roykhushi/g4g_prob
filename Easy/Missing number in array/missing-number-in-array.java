@@ -25,17 +25,17 @@ class GFG {
 // } Driver Code Ends
 
 
-
-
 // User function Template for Java
 
 class Solution {
     int missingNumber(int array[], int n) {
         // Your Code Here
-         int i, total;
-        total = (n + 1) * (n) / 2;
-        for (i = 0; i < n-1; i++)
-            total -= array[i];
-        return total;
-}
+        
+      int sum = (n)*(n+1)/2;
+      int arrSum = 0;
+      for(int i =0;i<n-1;i++){
+          arrSum += array[i];
+      }
+      return (sum - arrSum);
+    }
 }
