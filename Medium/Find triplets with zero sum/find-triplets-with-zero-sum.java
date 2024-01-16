@@ -22,8 +22,6 @@ class Triplets{
 // } Driver Code Ends
 
 
-
-
 /*Complete the function below*/
 
 
@@ -34,26 +32,26 @@ class Solution
     //Function to find triplets with zero sum.
 	public boolean findTriplets(int arr[] , int n)
     {
-        int l,r;
-        Arrays.sort(arr);
-        for(int i=0;i<n-2;i++){
+        //add code here.
+        
+        //two pointer approach
+        Arrays.sort(arr); //-3,-1,0,1,2
+        for(int i=0;i<n-1;i++){
             
-            l=i+1;
-            r=n-1;
-            
-            while(l<r){
-                
-                if(arr[i]+arr[l]+arr[r]==0){
-                    return true;
-                }
-                else if(arr[i]+arr[l]+arr[r]<0){
-                l++;
-                }
-                else{
-                    r--;
-                }
+            int low = i+1;
+            int high = n-1;
+            while(low<high){
+            if(arr[i] + arr[low] + arr[high] == 0){
+                return true;
+            }
+            else if(arr[i] + arr[low] + arr[high] < 0){
+                low ++;
+            }
+            else{
+                high --;
+            }
             }
         }
-       return false;
+        return false;
     }
 }
