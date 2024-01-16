@@ -28,8 +28,6 @@ class Main
 // } Driver Code Ends
 
 
-
-
 //User function Template for Java
 
 class Solution
@@ -39,33 +37,27 @@ class Solution
     public static boolean find3Numbers(int A[], int n, int X) { 
     
        // Your code Here
-        int l, r;
-        //Sorting the elements.
-        Arrays.sort(A);
-  
-        //Traversing the array elements.
-        for (int i = 0; i < n - 2; i++) { 
-  
-            
-            l = i + 1; 
-            r = n - 1; 
-            while (l < r) { 
-               
-                if (A[i] + A[l] + A[r] == X) { 
-                    
-                    return true; 
-                } 
-              
-                else if (A[i] + A[l] + A[r] < X) 
-                    l++; 
-              
-                else
-                    r--; 
-            } 
-        } 
-  
-      
-        return false; 
-   
-}
+       //using two pointer approach
+       Arrays.sort(A);
+       
+       for(int i=0;i<n-1;i++){
+           int low = i+1;
+           int high = n-1;
+           
+           while(low < high){
+               if(A[i] + A[low] + A[high] == X){
+                   return true;
+               }
+               else if(A[i] + A[low] + A[high] < X){
+                   low ++;
+               }
+               else{
+                   high --;
+               }
+           }
+           
+       }
+       return false;
+     
+    }
 }
