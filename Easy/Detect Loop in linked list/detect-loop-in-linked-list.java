@@ -63,8 +63,6 @@ class GFG
 // } Driver Code Ends
 
 
-
-
 //User function template for JAVA
 
 /* Node is defined as
@@ -83,21 +81,15 @@ class Solution {
     //Function to check if the linked list has a loop.
     public static boolean detectLoop(Node head){
         // Add code here
-        
-        
-        //search the linked list in a unique hashset
-        //if it contains a node return true
-        //else return false
-        //if we are seeing the node for the first time add it in the set
-        HashSet<Node> set = new HashSet<Node>();
-        
-        while(head != null){
-            if(set.contains(head)){
+        //hare and turtle approach
+        Node turtle = head;
+        Node hare = head;
+        while(hare != null && hare.next!= null){
+            turtle = turtle.next;
+            hare = hare.next.next;
+            if(turtle == hare){
                 return true;
-                
             }
-            set.add(head);
-            head=head.next;
         }
         return false;
     }
