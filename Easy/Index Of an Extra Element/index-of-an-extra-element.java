@@ -21,11 +21,18 @@ class ExtraElement {
 /*Complete the function below*/
 class Solution {
     public int findExtra(int a[], int b[], int n) {
-        for(int i=0;i<b.length;i++){
-            if(a[i] != b[i]){
-                return i;
+        //using binary search
+        int start = 0;
+        int end = n-1;
+        while(start < end){
+            int mid = start + (end-start)/2;
+            if(a[mid] == b[mid]){
+                start = mid+1;
+            }
+            else{
+                end = mid;
             }
         }
-        return n-1;
+            return start;
     }
 }
