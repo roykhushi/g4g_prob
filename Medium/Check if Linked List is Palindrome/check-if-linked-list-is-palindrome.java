@@ -99,30 +99,58 @@ class Node
 
 class Solution
 {
-    //Function to check whether the list is palindrome.
-    boolean checkPalind(ArrayList<Integer> l){
-        int n = l.size();
-        int i = 0;
-        int j = n-1;
-        while(i<=j){
-            if(l.get(i) != l.get(j)){
-                return false;
-            }
-            i++;
-            j--;
+    public static Node reverse(Node head){
+        Node curr = head;
+        Node prev = null;
+        Node next = null;
+        
+        while(curr != null){
+            next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
         }
-        return true;
+        return prev;
+    }
+    
+    
+    public static Node getMiddle(Node head){
+        Node fast = head.next;
+        Node slow = head;
+        
+        while(fast != null && fast.next != null){
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        return slow;
     }
     boolean isPalindrome(Node head) 
     {
         //Your code here
-        ArrayList<Integer> l = new ArrayList<>();
-        Node temp = head;
-        while(temp != null){
-            l.add(temp.data);
-            temp = temp.next;
+        
+        if(head == null || head.next == null){
+            return true;
         }
-        return checkPalind(l);
+        //step 1 --> find middle
+        Node middle = getMiddle(head);
+        
+        //reverse the ll after the middle 
+        Node temp = middle.next;
+        middle.next = reverse(temp);
+        
+        Node head1 = head;
+        Node head2 = middle.next;
+        
+        while(head2 != null){
+            if(head2.data != head1.data){
+                return false;
+            }
+            head1 = head1.next;
+            head2 = head2.next;
+        }
+        
+        return true;
+        
     }    
 }
 
