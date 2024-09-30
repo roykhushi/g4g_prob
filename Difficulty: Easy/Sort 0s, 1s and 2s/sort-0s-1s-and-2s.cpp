@@ -8,6 +8,7 @@ class Solution {
   public:
     void sort012(vector<int>& arr) {
         // code here
+        //dutch national flag algo
         int low =0;
         int mid = 0;
         int high = arr.size()-1;
@@ -34,6 +35,7 @@ class Solution {
         
     }
 };
+
 
 //{ Driver Code Starts.
 int main() {
