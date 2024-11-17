@@ -12,9 +12,7 @@ class Solution {
         int j = arr.size()-1;
         
         while(i<=j){
-            int temp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = temp;
+            swap(arr[i],arr[j]);
             i++;
             j--;
         }
@@ -42,6 +40,7 @@ int main() {
             cout << arr[i] << " ";
         }
         cout << endl;
+        cout << "~" << endl;
     }
     return 0;
 }
