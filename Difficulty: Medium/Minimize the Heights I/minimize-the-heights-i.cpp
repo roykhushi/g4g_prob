@@ -12,15 +12,19 @@ class Solution {
     int getMinDiff(int k, vector<int> &arr) {
         // code here
         
-        sort(arr.begin(),arr.end());
+        
+        
+       sort(arr.begin(),arr.end());
         
         int n = arr.size();
+        
         int ans = arr[n-1]-arr[0];
         
-        for(int i=0;i<n;i++){
+        for(int i=0;i<n-1;i++){
             
-            int mini = min(arr[0]+k,arr[i]-k);
-            int maxi = max(arr[i-1]+k,arr[n-1]-k);
+            int mini = min(arr[0]+k,arr[i+1]-k);
+            int maxi = max(arr[i]+k,arr[n-1]-k);
+            
             ans = min(ans,abs(maxi-mini));
         }
         return ans;
