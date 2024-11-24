@@ -12,17 +12,17 @@ class Solution {
     int maxSubarraySum(vector<int> &arr) {
         // code here...
         int max_sum = INT_MIN;
-        int curr_sum = 0;
-        
-        for(int i=0;i<arr.size();i++){
-            curr_sum += arr[i];
+        int n = arr.size();
+        int sum = 0;
+        for(int i=0;i<n;i++){
+            sum += arr[i];
             
-            if(curr_sum > max_sum){
-                max_sum = curr_sum;
+            if(sum > max_sum){
+                max_sum = sum;
             }
             
-            if(curr_sum <= 0){
-                curr_sum = 0;
+            if(sum <= 0){
+                sum = 0;
             }
         }
         return max_sum;
