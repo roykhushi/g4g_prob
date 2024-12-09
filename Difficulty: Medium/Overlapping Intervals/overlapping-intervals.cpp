@@ -14,23 +14,23 @@ class Solution {
         vector<int> temp = {-1,-1};
         
         for(auto x : arr){
-            if(temp[0] == -1){
+            if(temp[0] == -1){ //pushing for the first time
                 temp = x;
             }
             else{
-                if(temp[1]>= x[0]){
+                if(temp[1] >= x[0]){
+                    //possible intersection found
                     temp[1] = max(temp[1],x[1]);
                 }
                 else{
+                    //not possibke [1,4] and [6,8]
                     ans.push_back(temp);
                     temp = x;
                 }
             }
         }
-        
-        ans.push_back(temp);
+        ans.push_back(temp); //last val
         return ans;
-        
     }
 };
 
