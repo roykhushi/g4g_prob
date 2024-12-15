@@ -6,37 +6,38 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
-    int kthElement(int k, vector<int>& arr1, vector<int>& arr2) {
+    int kthElement(vector<int>& a, vector<int>& b,int k) {
         // code here
         vector<int> ans;
-        int n = arr1.size();
-        int m = arr2.size();
+        int n = a.size();
+        int m = b.size();
         
         int i = 0;
         int j = 0;
         
         while(i<n && j<m){
-            if(arr1[i] <= arr2[j]){
-                ans.push_back(arr1[i]);
+            if(a[i] <= b[j]){
+                ans.push_back(a[i]);
                 i++;
             }
             else{
-                ans.push_back(arr2[j]);
+                ans.push_back(b[j]);
                 j++;
             }
         }
         while(i<n){
-            ans.push_back(arr1[i]);
+            ans.push_back(a[i]);
             i++;
         }
         while(j<m){
-            ans.push_back(arr2[j]);
+            ans.push_back(b[j]);
             j++;
         }
         
         return ans[k-1];
     }
 };
+
 
 //{ Driver Code Starts.
 
@@ -51,22 +52,22 @@ int main() {
         cin.ignore();
         string input;
         int num;
-        vector<int> arr1, arr2;
+        vector<int> a, b;
 
         getline(cin, input);
         stringstream s2(input);
         while (s2 >> num) {
-            arr1.push_back(num);
+            a.push_back(num);
         }
 
         getline(cin, input);
         stringstream s3(input);
         while (s3 >> num) {
-            arr2.push_back(num);
+            b.push_back(num);
         }
 
         Solution ob;
-        cout << ob.kthElement(k, arr1, arr2) << endl << "~\n";
+        cout << ob.kthElement(a, b, k) << endl << "~\n";
     }
     return 0;
 }
