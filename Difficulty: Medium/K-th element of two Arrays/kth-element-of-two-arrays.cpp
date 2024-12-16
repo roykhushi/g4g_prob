@@ -6,38 +6,55 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
-    int kthElement(vector<int>& a, vector<int>& b,int k) {
+    int kthElement(vector<int>& a, vector<int>& b, int k) {
         // code here
-        vector<int> ans;
+        //optimised
         int n = a.size();
         int m = b.size();
+        int count = 0;
         
-        int i = 0;
-        int j = 0;
-        
+        int i=0;
+        int j=0;
+        int elem = -1;
         while(i<n && j<m){
-            if(a[i] <= b[j]){
-                ans.push_back(a[i]);
+            
+            if(a[i]<b[j]){
+                elem = a[i];
                 i++;
+                count++;
             }
             else{
-                ans.push_back(b[j]);
+                elem = b[j];
                 j++;
+                count++;
+            }
+            
+            if(count == k){
+                return elem;
             }
         }
+        
         while(i<n){
-            ans.push_back(a[i]);
-            i++;
-        }
-        while(j<m){
-            ans.push_back(b[j]);
-            j++;
+            count++;
+            elem = a[i++];
+            
+            if(count == k){
+                return elem;
+            }
         }
         
-        return ans[k-1];
+        while(j<m){
+            count++;
+            elem = b[j++];
+            
+            if(count == k){
+                return elem;
+            }
+        }
+        
+        return -1;
     }
 };
-
 
 //{ Driver Code Starts.
 
