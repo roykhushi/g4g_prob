@@ -9,36 +9,56 @@ class Solution {
   public:
     bool matSearch(vector<vector<int>> &mat, int x) {
         // your code here
-        int rows = mat.size();
-        int cols = mat[0].size();
+       
         
-        for(int i=0;i<rows;i++){
-            for(int j=0;j<cols;j++){
-                if(mat[i][j] == x){
-                    return true;
-                }
-            }
-        }
-        return false;
-        
-        // int start = 0;
-        // int end = rows*cols-1;
-        
-        // while(start <= end){
-        //     int mid = start + (end-start)/2;
-        //     int element = mat[mid/cols][mid%cols];
-            
-        //     if(element == x){
-        //         return true;
-        //     }
-        //     else if(element < x){
-        //         start = mid+1;
-        //     }
-        //     else{
-        //         end = mid-1;
+        // for(int i=0;i<rows;i++){
+        //     for(int j=0;j<cols;j++){
+        //         if(mat[i][j] == x){
+        //             return true;
+        //         }
         //     }
         // }
         // return false;
+        
+         int rows = mat.size();
+         int cols = mat[0].size();
+        
+        // for(int i=0;i<cols;i++){
+        //     int start = 0;
+        //     int end = rows-1;
+            
+        //     while(start <= end){
+        //         int mid = start + (end-start)/2;
+        //         int elem = mat[mid][i];
+        //         if(elem == x){
+        //             return true;
+        //         }
+        //         else if(elem < x){
+        //             start = mid+1;
+        //         }
+        //         else{
+        //             end = mid-1;
+        //         }
+        //     }
+        // }
+        // return false;
+        
+        int i = 0;
+        int j = cols-1;
+        
+        while(i<rows && j>=0){
+            int elem = mat[i][j];
+            if(elem > x){
+                j--;
+            }
+            else if(elem < x){
+                i++;
+            }
+            else{
+                return true;
+            }
+        }
+        return false;
     }
 };
 
