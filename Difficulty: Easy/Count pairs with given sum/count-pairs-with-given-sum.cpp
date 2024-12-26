@@ -27,7 +27,9 @@ class Solution {
         for(int i=0;i<n;i++){
             int half = target-arr[i];
             
-            count = count + mp[half];
+            if(mp.find(half) != mp.end()){
+                count += mp[half];
+            }
             
             mp[arr[i]]++;
         }
