@@ -27,32 +27,38 @@ class Solution {
         // return ans.size();
         
         
-        int c = 0;
+        int count = 0;
         int n = arr.size();
         
         for (int i = 0; i < n - 2; i++) {
+            
             int j = i + 1;
             int k = n - 1;
             
             while (j < k) {
-                if (arr[j] + arr[k] == target - arr[i]) {
-                    c++;
+                int sum = (target-arr[i]);
+                if (arr[j] + arr[k] == sum) {
+                    count++;
+                    //handling dup values of arr[j]
                     int temp = j + 1;
                     while (temp < k && arr[temp] == arr[temp - 1]) {
-                        c++;
+                        count++;
                         temp++;
                     }
                     k--;
-                } else if (arr[j] + arr[k] < target - arr[i]) {
+                } 
+                else if (arr[j] + arr[k] < sum) {
                     j++;
-                } else {
+                } 
+                else {
                     k--;
                 }
             }
         }
-        return c;
+        return count;
     }
 };
+
 
 
 //{ Driver Code Starts.
