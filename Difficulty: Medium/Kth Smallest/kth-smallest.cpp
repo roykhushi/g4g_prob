@@ -12,41 +12,31 @@ class Solution {
   public:
     // arr : given array
     // k : find kth smallest element and return using this function
-    public:
-        int partition(vector<int> &arr, int low,int high){
-            int pivot = arr[high];
-            int i = low-1;
-            
-            for(int j=low;j<high;j++){
-                if(arr[j]<=pivot){
-                    i++;
-                    swap(arr[i],arr[j]);
-                }
-            }
-            swap(arr[i+1],arr[high]);
-            return i+1;
-        }
-        int quickselect(vector<int> &arr,int low, int high, int k){
-            //getting the pivot index
-            if(low<=high){
-                int pidx = partition(arr,low,high);
-                
-                if(pidx == k-1){
-                    return arr[pidx];
-                }
-                else if(pidx > k-1){//search in left side
-                    return quickselect(arr,low,pidx-1,k);
-                }
-                else{//search in right side
-                    return quickselect(arr,pidx+1,high,k);
-                }
-            }
-            return -1;
-        }
     int kthSmallest(vector<int> &arr, int k) {
-        //quickselect approach
-        int n = arr.size()-1;
-        return quickselect(arr,0,n,k);
+        // code here
+        
+        // using heap method
+        
+        //step 1 -> building a max heap for the 1st k elements
+        priority_queue<int> pq;
+        
+        for(int i=0;i<k;i++){
+            pq.push(arr[i]);
+        }
+        
+        //step 2 -> for the rest elements i.e, k->n-1 elems do this:
+        //(i) if element < heap.top() --> heap.pop() --> heap.push(elem)
+        //(ii)in the end the heap would contain the k elems nd
+        //final ans would be heap.top();
+        
+        int n = arr.size();
+        for(int i=k;i<n;i++){
+            if(arr[i] < pq.top()){
+                pq.pop();
+                pq.push(arr[i]);
+            }
+        }
+        return pq.top();
     }
 };
 
@@ -76,7 +66,7 @@ int main() {
         k = crr[0];
         int n = arr.size();
         Solution ob;
-        cout << ob.kthSmallest(arr, k) << endl;
+        cout << ob.kthSmallest(arr, k) << endl << "~\n";
     }
     return 0;
 }
