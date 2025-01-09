@@ -12,28 +12,52 @@ class Solution {
         vector<int> ans;
         int n = arr.size();
         
-        if(n == 1){
-            if(arr[0] == target){
-                ans.push_back(1);
-                ans.push_back(1);
-            }
-            else{
-                ans.push_back(-1);
-            }
-            return ans;
-        }
+        // if(n == 1){
+        //     if(arr[0] == target){
+        //         ans.push_back(1);
+        //         ans.push_back(1);
+        //     }
+        //     else{
+        //         ans.push_back(-1);
+        //     }
+        //     return ans;
+        // }
         
+        
+        
+        //brute force = O(n2)
+        // for(int i=0;i<n;i++){
+        //     int sum = 0;
+        //     for(int j=i;j<n;j++){
+        //         sum += arr[j];
+        //         if(sum == target){
+        //             ans.push_back(i+1);
+        //             ans.push_back(j+1);
+        //             return ans;
+        //         }
+                
+        //     }
+        // }
+        
+        //optimised 
+        //sliding window
+        
+        int left = 0;
+        int sum = 0;
         
         for(int i=0;i<n;i++){
-            int sum = 0;
-            for(int j=i;j<n;j++){
-                sum += arr[j];
-                if(sum == target){
-                    ans.push_back(i+1);
-                    ans.push_back(j+1);
-                    return ans;
-                }
+            sum+=arr[i];
+            
+            while(sum > target && left<i){
+                sum-=arr[left];
+                left++;
+            }
+            
+            if(sum == target){
+                ans.push_back(left+1);
+                ans.push_back(i+1);
                 
+                return ans;
             }
         }
         
