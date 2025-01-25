@@ -20,7 +20,7 @@ class Solution {
         //step 1 -> building a max heap for the 1st k elements
         priority_queue<int> pq;
         
-        for(int i=0;i<k;i++){
+        for(int i=0;i<k;i++){ //o(n)
             pq.push(arr[i]);
         }
         
@@ -30,7 +30,7 @@ class Solution {
         //final ans would be heap.top();
         
         int n = arr.size();
-        for(int i=k;i<n;i++){
+        for(int i=k;i<n;i++){ //O(n-k)
             if(arr[i] < pq.top()){
                 pq.pop();
                 pq.push(arr[i]);
