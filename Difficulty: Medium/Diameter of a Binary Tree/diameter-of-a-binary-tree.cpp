@@ -4,18 +4,21 @@ using namespace std;
 
 /* A binary tree node has data, pointer to left child
    and a pointer to right child */
-struct Node {
+class Node {
+  public:
     int data;
-    struct Node* left;
-    struct Node* right;
+    Node* left;
+    Node* right;
+
+    Node(int val) {
+        data = val;
+        left = NULL;
+        right = NULL;
+    }
 };
 
 Node* newNode(int val) {
-    Node* temp = new Node;
-    temp->data = val;
-    temp->left = NULL;
-    temp->right = NULL;
-    return temp;
+    return new Node(val);
 }
 
 Node* buildTree(string str) {
@@ -82,58 +85,56 @@ Node* buildTree(string str) {
 
 
 // } Driver Code Ends
-/* Tree node structure  used in the program
-
-struct Node
-{
+/*
+class Node {
+public:
     int data;
-    struct Node* left;
-    struct Node* right;
+    Node* left;
+    Node* right;
 
-    Node(int x){
-        data = x;
-        left = right = NULL;
+    Node(int val) {
+        data = val;
+        left = NULL;
+        right = NULL;
     }
-}; */
+};
+
+Node* newNode(int val) {
+    return new Node(val);
+}
+*/
 
 class Solution {
   public:
-    int height(Node* root){
+    int height(Node* root, int &ans){
         if(root == NULL){
             return 0;
         }
-        int left = height(root->left);
-        int right = height(root->right);
+        
+        int left = height(root->left,ans);
+        int right = height(root->right,ans);
+        
+        ans = max(ans,left+right);
         
         return max(left,right)+1;
+        
     }
-    // Function to return the diameter of a Binary Tree.
     int diameter(Node* root) {
         // Your code here
-        //longest path nikalna hai
         if(root == NULL){
-            return 0;
+            return -1;
         }
         
-        //left subtree
-        int op1 = diameter(root->left);
-        //right
-        int op2 = diameter(root->right);
-        //combination
-        int op3 = height(root->left) + height(root->right);
-        
-        int max1 = max(op1,op2);
-        int ans = max(op3,max1);
+        int ans = 0;
+        height(root,ans);
         
         return ans;
-        
-        
     }
 };
 
 //{ Driver Code Starts.
 
-/* Driver program to test size function*/
+/* Driver program to test size function */
 int main() {
     int t;
     scanf("%d\n", &t);
