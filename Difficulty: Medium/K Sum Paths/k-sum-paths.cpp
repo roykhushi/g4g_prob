@@ -80,11 +80,8 @@ Node *buildTree(string str) {
 
 
 // } Driver Code Ends
-// User function template for C++
-
 /*
-struct Node
-{
+struct Node {
     int data;
     Node *left;
     Node *right;
@@ -95,30 +92,30 @@ struct Node
     }
 };
 */
-//if sending temp pass by ref then use pop_back bcz same memory add
-//else no need bcz diff call stack add
 class Solution {
   public:
-    void solve(Node* root,vector<int>&temp,int &count,int k){
+    void solve(Node *root, int &count, vector<int> &temp, int k){
         if(root == NULL){
             return;
         }
         
         temp.push_back(root->data);
         
-        solve(root->left,temp,count,k);
-        solve(root->right,temp,count,k);
+        solve(root->left,count,temp,k);
+        solve(root->right,count,temp,k);
         
-        //calculating sum while returnign
         int sum = 0;
+        
         for(int i=temp.size()-1;i>=0;i--){
             sum+=temp[i];
             
             if(sum == k){
-                count++;
+                count+=1;
             }
         }
+        
         temp.pop_back();
+ 
     }
     int sumK(Node *root, int k) {
         // code here
@@ -126,13 +123,14 @@ class Solution {
             return 0;
         }
         
-        int count = 0;
         vector<int> temp;
-        // temp.push_back(root->data);
         
-        solve(root,temp,count,k);
+        int count = 0;
+        
+        solve(root,count,temp,k);
         
         return count;
+        
     }
 };
 
