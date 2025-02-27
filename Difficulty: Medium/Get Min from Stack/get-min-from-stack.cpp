@@ -9,6 +9,7 @@ class Solution {
   public:
     stack<int> st1;
     stack<int> st2;
+    int top;
     Solution() {
         // code here
     }
@@ -18,7 +19,12 @@ class Solution {
         // code here
         st1.push(x);
         
-        int top = (st2.empty()) ? INT_MAX : st2.top();
+        if(st2.empty()){
+            top = INT_MAX;
+        }
+        else{
+            top = st2.top();
+        }
         
         if(x < top){
             st2.push(x);
